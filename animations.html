@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Animations</title>
+</head>
+<body>
+
+<style>
+    @keyframes rotacao {
+        from {
+            transform: rotate(0);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes tremidinha {
+        0% {
+            margin-left: 15px;
+        }
+        25% {
+            margin-left: -20px;
+            background-color: black;
+        }
+        50% {
+            margin-left: 25px
+        }
+        75% {
+            margin-left: -10px;
+            background-color: yellow;
+        }
+        100% {
+            margin-left: 5px;
+        }
+    }
+
+    .backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 500ms;
+    }
+
+    .spinner {
+        width: 100px;
+        height: 100px;
+        animation: rotacao 1s infinite;
+        animation-timing-function: linear;
+        border: 10px solid #ccc;
+        border-top-color: #338;
+        border-radius: 50%;
+        margin: auto;
+    }
+
+    button {
+        border: none;
+        background: #A33;
+        border-radius: 15px;
+        color: #FFF;
+        cursor: pointer;
+        padding: 10px;
+        transition: all 500ms;
+        position: relative;
+    }
+    button:hover {
+        background: #F00;
+        animation: tremidinha 1s linear 2;
+    }
+</style>
+<button onclick="carregar()">Clica ni mim</button>
+<div id="backdrop" class="backdrop">
+    <div class="spinner">
+
+    </div>
+</div>
+
+<script>
+    function carregar() {
+        let backdrop = document.getElementById('backdrop')
+        backdrop.style.opacity = 1;
+        backdrop.style.zIndex = 1;
+
+        setTimeout(function () {
+            backdrop.style.opacity = 0;
+            backdrop.style.zIndex = -1;
+        }, 2000)
+    }
+</script>
+</body>
+</html>
